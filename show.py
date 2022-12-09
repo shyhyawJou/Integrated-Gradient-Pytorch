@@ -43,7 +43,7 @@ def main():
     print('img:', arg.img)
     
     img = Image.open(arg.img).convert('RGB')
-    baseline = torch.zeros((1 , 3, 224, 224), requires_grad=True)
+    baseline = torch.zeros((1 , 3, 224, 224), device=arg.d, requires_grad=True)
     
     # output is torch Tensor, heatmap is ndarray
     output, heatmap = ig.get_heatmap(img, baseline)
