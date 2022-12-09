@@ -43,7 +43,7 @@ class Integrated_Gradient:
         '''
         generate every x and delta_x in the path
         '''
-        alphas = torch.linspace(0, 1, steps + 1).view(-1, 1, 1, 1)
+        alphas = torch.linspace(0, 1, steps + 1, device=self.device).view(-1, 1, 1, 1)
         delta = (x - baseline)
         x = baseline + alphas * delta
         return x, (delta / steps).detach()
