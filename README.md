@@ -1,6 +1,5 @@
 # Overview
-The implementation of [Integrated Gradient](# Overview
-The implementation of [Grad-CAM](https://arxiv.org/abs/1610.02391)
+The implementation of [Integrated Gradient](https://arxiv.org/abs/1703.01365)
 
 # Example
 ![](assets/n01669191_46.JPEG)
@@ -24,8 +23,6 @@ python show.py -d cpu -img assets/n01669191_46.JPEG -step 20 -m {your model path
 # Note
 - Remenber to check whether the image preprocess is the same as yours, if not, you should alert the preprocess in the `show.py` or the result will be wrong.
 - If you have cuda, you can just replace the "cpu" to "cuda".
-- If you don't specify any layer, my code will use the last layer before global average pooling  to plot heatmap.
-- Generally, the layer is deeper, the interpretaton is better. Accordingly, using the last layer before last global average layer to plot heatmap would be a nice choice.
 
 # All inplementation of CAM method
 | Method   | Framework |
