@@ -40,9 +40,6 @@ class Integrated_Gradient:
         return self.model(x.detach()), cam
                                          
     def _get_X_and_delta(self, x, baseline, steps):
-        '''
-        generate every x and delta_x in the path
-        '''
         alphas = torch.linspace(0, 1, steps + 1, device=self.device).view(-1, 1, 1, 1)
         delta = (x - baseline)
         x = baseline + alphas * delta
