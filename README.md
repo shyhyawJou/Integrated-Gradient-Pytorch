@@ -23,7 +23,7 @@ python show.py -d cpu -img assets/n01669191_46.JPEG -step 20 -m {your model path
 # Note
 - Remenber to check whether the image preprocess is the same as yours, if not, you should alert the preprocess in the `show.py` or the result will be wrong.
 - If you have cuda, you can just replace the "cpu" to "cuda".
-- The bigger the step is, the more memory will be used, thus, don't set `step` too high.  
+- The bigger the `step` is, the more memory will be used, thus, don't set `step` too high.  
 According to the paper, 20 steps are enough to show a good heatmap, so I set `step` to 20 by default.
 
 # All inplementation of CAM method
