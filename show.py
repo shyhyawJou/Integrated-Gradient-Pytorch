@@ -51,7 +51,6 @@ def main():
 
     w, h = img.size
     heatmap = Image.fromarray(heatmap)
-    heatmap.save('heatmap.jpg')
     result = Image.new('RGB', (2 * w, h))
     result.paste(img)
     result.paste(heatmap, (w, 0))
