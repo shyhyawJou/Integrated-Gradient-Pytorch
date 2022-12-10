@@ -32,4 +32,4 @@ According to the paper, 20 steps are enough to show a good heatmap, so I set `st
 | Grad-CAM | [Pytorch](https://github.com/shyhyawJou/GradCAM-pytorch)/[Tensorflow](https://github.com/shyhyawJou/GradCAM-Tensorflow) | 
 | Eigen-CAM | [Pytorch](https://github.com/shyhyawJou/EigenCAM-Pytorch)/[Tensorflow](https://github.com/shyhyawJou/Eigen-CAM-Tensorflow) |
 | Ablation-CAM | [Tensorflow](https://github.com/shyhyawJou/Ablation-CAM-Tensorflow) |
-| Integrated Gradient | [Pytorch](https://github.com/shyhyawJou/Integrated-Gradient-Pytorch) |
+| Integrated Gradient | [Pytorch](https://github.com/shyhyawJou/Integrated-Gradient-Pytorch)/[Tensorflow](https://github.com/shyhyawJou/Integrated-Gradient-Tensorflow) |
