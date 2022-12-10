@@ -54,8 +54,8 @@ def main():
     result.paste(img)
     result.paste(heatmap, (w, 0))
     result.show()
-
     
+
 
 if __name__ == "__main__":
     main()
