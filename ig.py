@@ -12,20 +12,21 @@ class Integrated_Gradient:
         self.prep = preprocess
         self.steps = steps
 
-    def get_heatmap(self, img, baseline=None):
+    def get_heatmap(self, img, baseline=None):        
+        # check whether the input shape is the same as the baseline shape
+        x = self.prep(img)[None].to(self.device)
         if baseline is None:
             baseline = torch.zeros_like(x, requires_grad=False)
-        
-        # generate every x and delta_x in the path and predict label
-        x = self.prep(img)[None].to(self.device)
         self._check(x, baseline)
+        
+        # get predict label
         output = self.model(x)
         pred_label = output.max(1)[1]
-        x.requires_grad_(True)
-        X, delta_X = self._get_X_and_delta(x, baseline, self.steps)
         
         # compute integrated gradients
-        ig_grad = torch.autograd.grad(self.model(X)[:, pred_label].sum(), X)[0]
+        x.requires_grad_(True)
+        X, delta_X = self._get_X_and_delta(x, baseline, self.steps)
+        ig_grad = torch.autograd.grad(self.model(X)[:, pred_label].mean(), X)[0]
         ig_grad = ig_grad.cpu().numpy()
         ig_grad = delta_X.cpu().numpy() * (ig_grad[:-1] + ig_grad[1:]) / 2.
         ig_grad = ig_grad.sum(axis=0, keepdims=True)
@@ -40,7 +41,7 @@ class Integrated_Gradient:
         return self.model(x.detach()), cam
                                          
     def _get_X_and_delta(self, x, baseline, steps):
-        alphas = torch.linspace(0, 1, steps + 1, device=self.device).view(-1, 1, 1, 1)
+        alphas = torch.linspace(0, 1, steps + 1).view(-1, 1, 1, 1)
         delta = (x - baseline)
         x = baseline + alphas * delta
         return x, (delta / steps).detach()

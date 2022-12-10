@@ -43,10 +43,9 @@ def main():
     print('img:', arg.img)
     
     img = Image.open(arg.img).convert('RGB')
-    baseline = torch.zeros((1 , 3, 224, 224), device=arg.d, requires_grad=True)
     
     # output is torch Tensor, heatmap is ndarray
-    output, heatmap = ig.get_heatmap(img, baseline)
+    output, heatmap = ig.get_heatmap(img, baseline=None)
     print('\nPredict label:', output.max(1)[1].item())
 
     w, h = img.size
@@ -55,6 +54,7 @@ def main():
     result.paste(img)
     result.paste(heatmap, (w, 0))
     result.show()
+    heatmap.save('heatmap.jpg')
     
 
 if __name__ == "__main__":
