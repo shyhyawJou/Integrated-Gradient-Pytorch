@@ -26,10 +26,10 @@ class Integrated_Gradient:
         # compute integrated gradients
         x.requires_grad_(True)
         X, delta_X = self._get_X_and_delta(x, baseline, self.steps)
-        ig_grad = torch.autograd.grad(self.model(X)[:, pred_label].sum(), X)[0]
-        ig_grad = ig_grad.cpu().numpy()
-        ig_grad = delta_X.cpu().numpy() * (ig_grad[:-1] + ig_grad[1:]) / 2.
-        ig_grad = ig_grad.sum(axis=0, keepdims=True)
+        grad = torch.autograd.grad(self.model(X)[:, pred_label].sum(), X)[0]
+        grad = grad.cpu().numpy()
+        grad = delta_X.cpu().numpy() * (grad[:-1] + grad[1:]) / 2.
+        ig_grad = grad.sum(axis=0, keepdims=True)
         
         # plot
         cam = np.clip(ig_grad, 0, None)
